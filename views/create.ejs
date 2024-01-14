@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include('layouts/header.ejs')-%>
+    <body>
+        <%-include('layouts/navbar.ejs')-%>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('/assets/img/contact-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Create New Post</h1>
+                            <span class="subheading">Have questions? I have answers.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
+                        <div class="my-5">
+                            <%if (validatorErrors != null && validatorErrors.length > 0) {%>
+                                <ul class="list-group"></ul>
+                                    <% for (var i = 0; i < validatorErrors.length; i++) { %>
+                                        <li class="list-group-item list-group-item-danger"><%= validatorErrors[i] %></li>
+                                        <hr class="m-0"/>
+                                    <% } %>
+                                </ul>
+                            <%}%>
+                            <form id="contactForm" action = "/posts/store" method = "POST" enctype="multipart/form-data">
+                                <div class="form-floating">
+                                    <input class="form-control" id="name" type="text" placeholder="Title" name = "title" value="<%= title%>"/>
+                                    <label for="name">Title</label>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="message" placeholder="Body" style="height: 12rem" name = "body"><%= body%></textarea>
+                                    <script>
+                                        $('#message').summernote({
+                                          placeholder: 'Body',
+                                          tabsize: 2,
+                                          height: 200
+                                        });
+                                    </script>
+                                </div>
+                                <div class="control-group">
+                                    <div class="form-group floating-label-form-group controls">
+                                        <label>Image</label>
+                                        <input type="file" class="form-control" id="image" name="image">
+                                    </div>
+                                </div>
+                                <br />
+                                <!-- Submit Button-->
+                                <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <%-include('layouts/footer.ejs')-%>
+        <%-include('layouts/script.ejs')-%>
+    </body>
+</html>
