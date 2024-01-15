@@ -34,7 +34,7 @@ app.use("*", (req,res,next) => {
     next();
 });
 app.use(flash());
-mongoose.connect("mongodb+srv://ngohaianh8dtd:2051990Aa@cluster0.gctb3tf.mongodb.net/my_database");
+mongoose.connect("mongodb+srv://ngohaianh8dtd:2051990Aa@cluster0.gctb3tf.mongodb.net/?retryWrites=true&w=majority");
 
 let port = process.env.PORT;
 if (port == null || port == "") {
